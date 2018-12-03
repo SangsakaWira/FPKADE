@@ -58,5 +58,25 @@ class ResponseModel(
     @SerializedName("strTeamBadge")
     val strTeamBadge:String="",
     @SerializedName("idTeam")
-    val idTeam:String=""
+    val idTeam:String="",
+    @SerializedName("intFormedYear")
+    val intFormedYear:String="",
+    @SerializedName("strStadium")
+    val strStadium:String = "",
+    @SerializedName("strDescriptionEN")
+    val strDescriptionEN:String = "",
+    @SerializedName("strPlayer")
+    val strPlayer:String = "",
+    @SerializedName("strPosition")
+    val strPosition:String = "",
+    @SerializedName("strCutout")
+    val strCutout:String = "",
+    @SerializedName("idPlayer")
+    val idPlayer:String="",
+    @SerializedName("strHeight")
+    val strHeight:String ="",
+    @SerializedName("strWeight")
+    val strWeight:String = "",
+    @SerializedName("strThumb")
+    val strThumb:String = ""
 )

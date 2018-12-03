@@ -10,7 +10,7 @@ class DetailItemPresenter(val detailItemViews: DetailItemViews) {
 
     fun getInformationTeams(id:String){
         val apiClientRetrofit = RetrofitResponse().response()
-        apiClientRetrofit.getTeams(id).enqueue(object : Callback<ResponseValue> {
+        apiClientRetrofit.getInfoTeams(id).enqueue(object : Callback<ResponseValue> {
             override fun onFailure(call: Call<ResponseValue>, t: Throwable) {
             }
 

@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.sangs.finalprojectkade.Model.model.ResponseModel
 import com.example.sangs.finalprojectkade.R
+import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
 
 class DetailActivity : AppCompatActivity(),DetailItemViews{
@@ -17,12 +18,16 @@ class DetailActivity : AppCompatActivity(),DetailItemViews{
     }
 
     override fun showDataItems(dataItems: List<ResponseModel?>?) {
-
+        this.dataItems = dataItems as ArrayList<ResponseModel?>?
+        Picasso.get().load(dataItems!![0]!!.strTeamBadge).placeholder(R.mipmap.ic_launcher).into(detailLogo)
+        detailFormedYear.text = dataItems[0]!!.intFormedYear
+        detailStadium.text = dataItems[0]!!.strStadium
+        detailNameTeam.text = dataItems[0]!!.strTeam
     }
 
     private lateinit var detailTeamsPresenter: DetailItemPresenter
     private var isFavorite: Boolean = false
-    private lateinit var dataItems:ArrayList<ResponseModel>
+    private var dataItems:ArrayList<ResponseModel?>? = null
     private lateinit var detailLogo: ImageView
     private lateinit var detailFormedYear: TextView
     private lateinit var detailStadium: TextView

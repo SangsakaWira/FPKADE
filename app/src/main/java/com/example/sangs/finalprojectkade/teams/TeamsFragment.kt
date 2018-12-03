@@ -34,6 +34,7 @@ class TeamsFragment : Fragment(),TeamsView,AnkoLogger{
         adapterSpinner.notifyDataSetChanged()
     }
     override fun showTeams(dataItems: List<ResponseModel?>?) {
+        this.dataTeams?.clear()
         if (dataItems != null) {
             this.dataTeams?.addAll(dataItems)
         }
