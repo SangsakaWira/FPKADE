@@ -2,4 +2,7 @@
 <resources>
     <item name="teams_titles" type="id"/>
     <item name="teams_logos" type="id"/>
+    <item name="photo" type="id"/>
+    <item name="name" type="id"/>
+    <item name="position" type="id"/>
 </resources>

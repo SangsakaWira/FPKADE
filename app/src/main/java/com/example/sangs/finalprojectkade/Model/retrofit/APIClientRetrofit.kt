@@ -24,4 +24,7 @@ interface APIClientRetrofit {
     @GET("eventspastleague.php")
     fun getEventsPastLeague(@Query("id")id:String):Call<ResponseValue>
 
+    @GET("lookup_all_players.php")
+    fun getAllPlayers(@Query("id")id:String):Call<ResponseValue>
+
 }

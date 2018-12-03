@@ -27,7 +27,6 @@ class OverviewsFragment() : Fragment() {
         // Inflate the layout for this fragment
         val view:View = inflater.inflate(R.layout.fragment_overviews, container, false)
 
-
         val titleDesc: TextView = view.find(R.id.overview_desc)
 
         overviewsPresenter = OverviewsPresenter()
