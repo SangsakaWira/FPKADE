@@ -1,9 +1,6 @@
 package com.example.sangs.finalprojectkade.Model.db
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Favorite(
                     val ID: Long?,
                     val idEvent: String?,
@@ -12,7 +9,7 @@ data class Favorite(
                     val dateEvent: String?,
                     val intHomeScore: String?,
                     val intAwayScore: String?
-                    ):Parcelable{
+                    ){
     companion object {
 
         const val TABLE_FAVORITE: String = "TABLE_FAVORITE"

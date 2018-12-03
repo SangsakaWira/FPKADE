@@ -2,9 +2,7 @@ package com.example.sangs.finalprojectkade.Model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class EventsItem(@field:SerializedName("intHomeShots")
 					  val intHomeShots: Int? = null,
 
@@ -156,4 +154,4 @@ data class EventsItem(@field:SerializedName("intHomeShots")
 					  val strCity: String? = null,
 
 					  @field:SerializedName("strPoster")
-					  val strPoster: String? = null):Parcelable
+					  val strPoster: String? = null)

@@ -44,4 +44,5 @@ class MainActivity : AppCompatActivity() {
         mainPresenter = MainPresenter()
         mainPresenter.changeFragment(MatchesFragment(),supportFragmentManager,R.id.frame)
     }
+
 }
