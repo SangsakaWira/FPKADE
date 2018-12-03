@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.sangs.finalprojectkade.R
-import com.example.sangs.finalprojectkade.matches.menu.LastMatchesFragment
+import com.example.sangs.finalprojectkade.matches.menu.last.LastMatchesFragment
 import com.example.sangs.finalprojectkade.matches.menu.next.NextMatchesFragment
 
 class MatchesTab(fm: FragmentManager?, context: Context?): FragmentStatePagerAdapter(fm) {
