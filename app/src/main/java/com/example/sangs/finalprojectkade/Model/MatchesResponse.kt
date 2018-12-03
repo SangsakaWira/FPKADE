@@ -1,4 +1,4 @@
-package com.example.sangsakawira.matchsub2.Model
+package com.example.sangs.finalprojectkade.Model
 
 import com.google.gson.annotations.SerializedName
 

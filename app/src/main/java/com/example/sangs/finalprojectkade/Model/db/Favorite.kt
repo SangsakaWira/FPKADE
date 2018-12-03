@@ -1,4 +1,4 @@
-package com.example.sangsakawira.matchsub2.Model.db
+package com.example.sangs.finalprojectkade.Model.db
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
