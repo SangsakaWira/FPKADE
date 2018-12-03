@@ -30,13 +30,17 @@ class NextMatchesFragment : Fragment(),NextMatchViews {
         adapter.notifyDataSetChanged()
     }
 
-    override fun showEvents(dataItems: ArrayList<ResponseModel>) {
-
+    override fun showEvents(dataItems: List<ResponseModel?>?) {
+        this.dataItemsEvents?.clear()
+        if (dataItems != null) {
+            this.dataItemsEvents?.addAll(dataItems)
+        }
+        adapterRecycler.notifyDataSetChanged()
     }
 
     private lateinit var nextMatchPresenter: NextMatchesPresenter
     private var dataItemsLeague:ArrayList<ResponseModel?>? = null
-    private lateinit var dataItemsEvents:ArrayList<ResponseModel>
+    private var dataItemsEvents:ArrayList<ResponseModel?>? = null
     private lateinit var adapter: MatchSpinners
     private lateinit var adapterRecycler: MatchAdapters
     var idLeague:String = ""
@@ -60,8 +64,8 @@ class NextMatchesFragment : Fragment(),NextMatchViews {
         nextMatchPresenter.getLeague()
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-//                idLeague = dataItemsLeague[position].idLeague
-//                nextMatchPresenter.getEventsLeagues(context?.getString(R.string.url_events_next_league)+idLeague)
+                idLeague = dataItemsLeague!![position]?.idLeague!!
+                nextMatchPresenter.getEvents(idLeague)
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>) {
@@ -69,28 +73,28 @@ class NextMatchesFragment : Fragment(),NextMatchViews {
         }
 
         //recycler
-//        val recyclerView: RecyclerView = view.find(R.id.recycler_next_match)
-//        dataItemsEvents = arrayListOf()
-//        val layout: RecyclerView.LayoutManager = LinearLayoutManager(context)
-//        recyclerView.layoutManager = layout
-//        adapterRecycler = MatchAdapters(dataItemsEvents, context = context,param = 1) {
-////            startActivity<DetailActivity>("id" to it.idEvent, "param" to "2")
-//        }
-//        recyclerView.adapter = adapterRecycler
-//        nextMatchPresenter.getEventsLeagues(context?.getString(R.string.url_events_next_league)+idLeague)
-//
-//        val search: EditText = view.find(R.id.search_next_match)
-//        search.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(edit: Editable?) {
-//            }
-//
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, position: Int, p2: Int, p3: Int) {
-//                adapterRecycler.filter.filter(s.toString())
-//            }
-//        })
+        val recyclerView: RecyclerView = view.find(R.id.recycler_next_match)
+        dataItemsEvents = arrayListOf()
+        val layout: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = layout
+        adapterRecycler = MatchAdapters(dataItemsEvents, context = context, param = 1) {
+//            startActivity<DetailActivity>("id" to it.idEvent, "param" to "2")
+        }
+        recyclerView.adapter = adapterRecycler
+        nextMatchPresenter.getEvents("$idLeague")
+
+        val search: EditText = view.find(R.id.search_next_match)
+        search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(edit: Editable?) {
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, position: Int, p2: Int, p3: Int) {
+                adapterRecycler.filter.filter(s.toString())
+            }
+        })
 
         return view
     }

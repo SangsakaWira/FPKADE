@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".teams.detail.DetailActivity">
         </activity>
+        <activity android:name=".matches.menu.menudetail.DetailActivityMatches">
+        </activity>
     </application>
 
 </manifest>

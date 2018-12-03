@@ -19,8 +19,9 @@ import com.example.sangs.finalprojectkade.R
 import org.jetbrains.anko.find
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-class MatchAdapters(var dataItems: ArrayList<ResponseModel>, val context: Context?, val param:Int, private val listener: (ResponseModel) -> Unit):
+class MatchAdapters(var dataItems: ArrayList<ResponseModel?>?, val context: Context?, val param:Int, private val listener: (ResponseModel) -> Unit):
     RecyclerView.Adapter<MatchAdapters.itemHolder>(), Filterable {
 
     override fun getFilter(): Filter {
@@ -30,11 +31,13 @@ class MatchAdapters(var dataItems: ArrayList<ResponseModel>, val context: Contex
                 if (charString.isEmpty()) {
                     dataItems = dataFiltered
                 } else {
-                    val filteredList = arrayListOf<ResponseModel>()
-                    for (row in dataFiltered) {
+                    val filteredList = arrayListOf<ResponseModel?>()
+                    if (dataFiltered != null) {
+                        for (row in dataFiltered) {
 
-                        if (row.strHomeTeam.toLowerCase().contains(charString.toLowerCase())||row.strAwayTeam.toLowerCase().contains(charString.toLowerCase())){
-                            filteredList.add(row)
+                            if (row?.strHomeTeam?.toLowerCase()!!.contains(charString.toLowerCase())||row?.strAwayTeam?.toLowerCase()!!.contains(charString.toLowerCase())){
+                                filteredList.add(row)
+                            }
                         }
                     }
 
@@ -47,7 +50,7 @@ class MatchAdapters(var dataItems: ArrayList<ResponseModel>, val context: Contex
             }
 
             override fun publishResults(charSequence: CharSequence, filterResults: Filter.FilterResults) {
-                dataItems = filterResults.values as ArrayList<ResponseModel>
+                dataItems = filterResults.values as ArrayList<ResponseModel?>?
                 notifyDataSetChanged()
             }
         }
@@ -60,10 +63,10 @@ class MatchAdapters(var dataItems: ArrayList<ResponseModel>, val context: Contex
         return itemHolder(view)
     }
 
-    override fun getItemCount(): Int = dataItems.size
+    override fun getItemCount(): Int = dataItems!!.size
 
     override fun onBindViewHolder(holder: itemHolder, position: Int) {
-        holder.bindItems(dataItems[position],listener,context,param)
+        holder.bindItems(dataItems?.get(position)!!,listener,context,param)
     }
 
     class itemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -75,14 +78,14 @@ class MatchAdapters(var dataItems: ArrayList<ResponseModel>, val context: Contex
 
         @SuppressLint("SetTextI18n")
         fun bindItems(model: ResponseModel, listener: (ResponseModel) -> Unit, context: Context?, param: Int){
-            itemDate.text = model.dateEvent
+            itemDate.text = model?.dateEvent
             itemtime.text = changeTimeZone(model.strTime)
             var homeScore = ""
             var awayScore = ""
-            if(!model.intHomeScore.equals("null"))
+            if(!model.intHomeScore.isNullOrBlank())
                 homeScore = model.intHomeScore
 
-            if (!model.intAwayScore.equals("null"))
+            if (!model.intAwayScore.isNullOrBlank())
                 awayScore = model.intAwayScore
 
             if (param == 2)

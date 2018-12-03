@@ -25,4 +25,21 @@ class NextMatchesPresenter(val nextMatchViews: NextMatchViews){
         })
     }
 
+    fun getEvents(id:String){
+        val apiClientRetrofit = RetrofitResponse().response()
+        apiClientRetrofit.getEventsNextLeague(id).enqueue(object : Callback<ResponseValue>{
+            override fun onFailure(call: Call<ResponseValue>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<ResponseValue>, response: Response<ResponseValue>) {
+                val data = response.body()
+                if (data != null){
+                    nextMatchViews.showEvents(data.events)
+                }
+            }
+
+        })
+    }
+
 }

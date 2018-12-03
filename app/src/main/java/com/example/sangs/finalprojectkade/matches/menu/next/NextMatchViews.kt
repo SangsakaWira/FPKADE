@@ -4,5 +4,5 @@ import com.example.sangs.finalprojectkade.Model.model.ResponseModel
 
 interface NextMatchViews {
     fun showLeagues(dataItems: List<ResponseModel?>?)
-    fun showEvents(dataItems: ArrayList<ResponseModel>)
+    fun showEvents(dataItems: List<ResponseModel?>?)
 }
