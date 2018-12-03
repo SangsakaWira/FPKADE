@@ -1,4 +1,4 @@
-package com.example.sangs.finalprojectkade.teams.detail
+package com.example.sangs.finalprojectkade.teams.detail.menu.overviewmatch
 
 import android.widget.TextView
 import com.example.sangs.finalprojectkade.Model.model.ResponseValue
@@ -7,10 +7,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailItemPresenter(val detailItemViews: DetailItemViews) {
+class OverviewsPresenter {
 
-    fun getInformationTeams(id:String){
+    fun getInfoTeams(id:String,textView: TextView){
         val apiClientRetrofit = RetrofitResponse().response()
+        var datas:String= ""
         apiClientRetrofit.getInfoTeams(id).enqueue(object : Callback<ResponseValue> {
             override fun onFailure(call: Call<ResponseValue>, t: Throwable) {
             }
@@ -18,11 +19,12 @@ class DetailItemPresenter(val detailItemViews: DetailItemViews) {
             override fun onResponse(call: Call<ResponseValue>, response: Response<ResponseValue>) {
                 val data = response.body()
                 if (data != null){
-                    detailItemViews.showDataItems(data.teams)
+                    textView.text = data.teams?.get(0)!!.strDescriptionEN
                 }
             }
 
         })
+
     }
 
 }

@@ -11,4 +11,6 @@
     <string name="search_next_match">Cari Team Anda</string>
     <string name="detail_logo_team">desc</string>
     <string name="content_match_vs">VS</string>
+    <string name="tab_overview">OVERVIEW</string>
+    <string name="tab_players">PLAYERS</string>
 </resources>

@@ -50,8 +50,8 @@ class DetailActivity : AppCompatActivity(),DetailItemViews{
         val tabs_main: TabLayout = find(R.id.tabs_main)
         val pager: ViewPager = find(R.id.viewpager_main)
 
-//        pager.adapter = DetailTeamsAdapter(supportFragmentManager,applicationContext,idTeams)
-//        tabs_main.setupWithViewPager(pager)
+        pager.adapter = DetailTeamsAdapter(supportFragmentManager,applicationContext,idTeams)
+        tabs_main.setupWithViewPager(pager)
 //
 //        detailTeamsPresenter.getFavoriteSize(idTeams)
 //
