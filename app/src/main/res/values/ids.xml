@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="teams_titles" type="id"/>
+    <item name="teams_logos" type="id"/>
+</resources>

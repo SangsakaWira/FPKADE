@@ -9,4 +9,6 @@
     <string name="tab_next">Next Match</string>
     <string name="tab_last">Last Match</string>
     <string name="search_next_match">Cari Team Anda</string>
+    <string name="detail_logo_team">desc</string>
+    <string name="content_match_vs">VS</string>
 </resources>

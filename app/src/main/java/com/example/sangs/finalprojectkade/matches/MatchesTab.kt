@@ -6,10 +6,11 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.sangs.finalprojectkade.R
 import com.example.sangs.finalprojectkade.matches.menu.LastMatchesFragment
-import com.example.sangs.finalprojectkade.matches.menu.NextMatchesFragment
+import com.example.sangs.finalprojectkade.matches.menu.next.NextMatchesFragment
 
 class MatchesTab(fm: FragmentManager?, context: Context?): FragmentStatePagerAdapter(fm) {
-    private val dataFragment = arrayOf(NextMatchesFragment(),
+    private val dataFragment = arrayOf(
+        NextMatchesFragment(),
         LastMatchesFragment()
     )
     private val dataFragmentTittle = arrayOf(context?.getString(R.string.tab_next),context?.getString(R.string.tab_last))

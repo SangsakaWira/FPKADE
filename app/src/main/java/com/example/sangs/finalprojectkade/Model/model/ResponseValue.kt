@@ -7,6 +7,9 @@ class ResponseValue {
     @field:SerializedName("countrys")
     val countrys: List<ResponseModel?>? = null
 
+    @field:SerializedName("teams")
+    val teams: List<ResponseModel?>? = null
+
     @field:SerializedName("value")
     val value: Int? = null
 }

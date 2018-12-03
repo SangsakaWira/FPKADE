@@ -4,5 +4,5 @@ import com.example.sangs.finalprojectkade.Model.model.ResponseModel
 
 interface TeamsView {
     fun showLeague(dataItems: List<ResponseModel?>?)
-    fun showTeams(dataItems:ArrayList<ResponseModel>)
+    fun showTeams(dataItems: List<ResponseModel?>?)
 }

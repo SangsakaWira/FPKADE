@@ -3,7 +3,10 @@ package com.example.sangs.finalprojectkade.teams
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +15,15 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Spinner
 import com.example.sangs.finalprojectkade.Model.model.ResponseModel
-import com.example.sangs.finalprojectkade.Model.retrofit.APIClientRetrofit
 
 import com.example.sangs.finalprojectkade.R
+import com.example.sangs.finalprojectkade.teams.detail.DetailActivity
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
+import org.jetbrains.anko.support.v4.startActivity
 
-class TeamsFragment : Fragment(),TeamsView{
+class TeamsFragment : Fragment(),TeamsView,AnkoLogger{
 
     override fun showLeague(dataItems: List<ResponseModel?>?) {
 
@@ -27,19 +33,20 @@ class TeamsFragment : Fragment(),TeamsView{
 
         adapterSpinner.notifyDataSetChanged()
     }
+    override fun showTeams(dataItems: List<ResponseModel?>?) {
+        if (dataItems != null) {
+            this.dataTeams?.addAll(dataItems)
+        }
 
-    override fun showTeams(dataItems: ArrayList<ResponseModel>) {
-
+        teamsAdapter.notifyDataSetChanged()
     }
 
-
     private lateinit var teamsPresenter: TeamsPresenter
-    private lateinit var apiClient: APIClientRetrofit
     private var dataItemsLeague:ArrayList<ResponseModel?>? = null
     private lateinit var adapterSpinner:TeamsSpinner
-    //    private lateinit var teamsAdapter: Teams
-//    private lateinit var dataTeams:ArrayList<DataModel>
-    private lateinit var loading: ProgressBar
+    private lateinit var teamsAdapter: TeamsAdapter
+    private var dataTeams:ArrayList<ResponseModel?>? = null
+    private lateinit var loading:ProgressBar
     private var idLeague:String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -59,32 +66,28 @@ class TeamsFragment : Fragment(),TeamsView{
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
                 idLeague = dataItemsLeague!![position]!!.idLeague
+                teamsPresenter.getData(idLeague)
             }
-
             override fun onNothingSelected(parentView: AdapterView<*>) {}
         }
 
-//        dataTeams = arrayListOf()
-//        teamsAdapter = TeamsAdapter(dataTeams){
-//            startActivity<DetailTeamsActivity>("id" to it.idTeam)
-//        }
-//        teamsPresenter.getDataTeams(context?.getString(R.string.url_allteams_league)+idLeague)
-//        val layout: RecyclerView.LayoutManager = LinearLayoutManager(context)
-//        recycler.layoutManager = layout
-//        recycler.adapter = teamsAdapter
-//
-//        search.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(edit: Editable?) {
-//            }
-//
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, position: Int, p2: Int, p3: Int) {
-//                teamsAdapter.filter.filter(s.toString())
-//            }
-//        })
+        dataTeams = arrayListOf()
+        teamsAdapter = TeamsAdapter(dataTeams){
+            startActivity<DetailActivity>("id" to it.idTeam)
+        }
+        val layout: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        recycler.layoutManager = layout
+        recycler.adapter = teamsAdapter
 
+        search.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(edit: Editable?) {
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(s: CharSequence?, position: Int, p2: Int, p3: Int) {
+                teamsAdapter.filter.filter(s.toString())
+            }
+        })
         return view
     }
 

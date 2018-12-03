@@ -1,4 +1,4 @@
-package com.example.sangs.finalprojectkade.teams
+package com.example.sangs.finalprojectkade.matches.menu.next
 
 import com.example.sangs.finalprojectkade.Model.model.ResponseValue
 import com.example.sangs.finalprojectkade.Model.retrofit.RetrofitResponse
@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TeamsPresenter(val view: TeamsView){
+class NextMatchesPresenter(val nextMatchViews: NextMatchViews){
 
     fun getLeague(){
         val apiClientRetrofit = RetrofitResponse().response()
@@ -18,24 +18,7 @@ class TeamsPresenter(val view: TeamsView){
             override fun onResponse(call: Call<ResponseValue>, response: Response<ResponseValue>) {
                 val data = response.body()
                 if (data != null){
-                    view.showLeague(data.countrys)
-                }
-            }
-
-        })
-    }
-
-    fun getData(id:String){
-        val apiClientRetrofit = RetrofitResponse().response()
-        apiClientRetrofit.getTeams(id).enqueue(object : Callback<ResponseValue>{
-            override fun onFailure(call: Call<ResponseValue>, t: Throwable) {
-
-            }
-
-            override fun onResponse(call: Call<ResponseValue>, response: Response<ResponseValue>) {
-                val data = response.body()
-                if (data != null){
-                    view.showTeams(data.teams)
+                    nextMatchViews.showLeagues(data.countrys)
                 }
             }
 
