@@ -15,4 +15,12 @@
     <string name="tab_players">PLAYERS</string>
     <string name="players_detail_weight">WEIGHT</string>
     <string name="players_detail_height">HEIGHT</string>
+    <string name="detail_goals">Details Goals</string>
+    <string name="detail_shots">Details SHots</string>
+    <string name="detail_lineups">Lineups</string>
+    <string name="detail_goalkeeper">Goalkeeper</string>
+    <string name="detail_defense">Defense</string>
+    <string name="detail_midfield">Midfiels</string>
+    <string name="detail_forward">Forward</string>
+    <string name="detail_subtitutes">Subtitues</string>
 </resources>

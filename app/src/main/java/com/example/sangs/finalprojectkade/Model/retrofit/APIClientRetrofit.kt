@@ -30,4 +30,10 @@ interface APIClientRetrofit {
     @GET("lookupplayer.php")
     fun getPlayers(@Query("id")id:String):Call<ResponseValue>
 
+    @GET("lookupevent.php")
+    fun getEventsDetail(@Query("id")id:String):Call<ResponseValue>
+
+    @GET("lookupteam.php")
+    fun getEventsTeam(@Query("id")id:String):Call<ResponseValue>
+
 }
