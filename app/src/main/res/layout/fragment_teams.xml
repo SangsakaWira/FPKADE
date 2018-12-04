@@ -23,11 +23,4 @@
             android:id="@+id/recycler_teams"
             android:layout_height="match_parent"/>
 
-    <ProgressBar
-            android:layout_width="wrap_content"
-            android:id="@+id/loading"
-            android:layout_centerInParent="true"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"/>
-
 </RelativeLayout>

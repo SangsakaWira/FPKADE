@@ -19,16 +19,20 @@ import com.example.sangs.finalprojectkade.R
 import com.example.sangs.finalprojectkade.matches.menu.MatchAdapters
 import com.example.sangs.finalprojectkade.matches.menu.MatchSpinners
 import com.example.sangs.finalprojectkade.matches.menu.menudetail.DetailActivityMatches
+import kotlinx.android.synthetic.main.fragment_next_matches.*
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.find
+import org.jetbrains.anko.info
 import org.jetbrains.anko.support.v4.startActivity
 
 
-class NextMatchesFragment : Fragment(),NextMatchViews {
+class NextMatchesFragment : Fragment(),NextMatchViews, AnkoLogger{
 
     override fun showLeagues(dataItems: List<ResponseModel?>?) {
         if (dataItems != null) {
             this.dataItemsLeague?.addAll(dataItems)
         }
+        spinner_next_match.setSelection(40)
         adapter.notifyDataSetChanged()
     }
 
@@ -77,13 +81,13 @@ class NextMatchesFragment : Fragment(),NextMatchViews {
         //recycler
         val recyclerView: RecyclerView = view.find(R.id.recycler_next_match)
         dataItemsEvents = arrayListOf()
+        nextMatchPresenter.getEvents("$idLeague")
         val layout: RecyclerView.LayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = layout
         adapterRecycler = MatchAdapters(dataItemsEvents, context = context, param = 1) {
             startActivity<DetailActivityMatches>("id" to it.idEvent, "param" to "2")
         }
         recyclerView.adapter = adapterRecycler
-        nextMatchPresenter.getEvents("$idLeague")
 
         val search: EditText = view.find(R.id.search_next_match)
         search.addTextChangedListener(object : TextWatcher {
@@ -100,6 +104,5 @@ class NextMatchesFragment : Fragment(),NextMatchViews {
 
         return view
     }
-
 
 }

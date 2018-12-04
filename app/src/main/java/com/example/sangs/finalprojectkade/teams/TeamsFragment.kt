@@ -47,7 +47,6 @@ class TeamsFragment : Fragment(),TeamsView,AnkoLogger{
     private lateinit var adapterSpinner:TeamsSpinner
     private lateinit var teamsAdapter: TeamsAdapter
     private var dataTeams:ArrayList<ResponseModel?>? = null
-    private lateinit var loading:ProgressBar
     private var idLeague:String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -57,7 +56,6 @@ class TeamsFragment : Fragment(),TeamsView,AnkoLogger{
         val spinner: Spinner = view.find(R.id.spinner_teams)
         val recycler: RecyclerView = view.find(R.id.recycler_teams)
         val search: EditText = view.find(R.id.search_teams)
-        loading = view.find(R.id.loading)
 
         dataItemsLeague = arrayListOf()
         teamsPresenter = TeamsPresenter(this)
