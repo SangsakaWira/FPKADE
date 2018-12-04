@@ -26,7 +26,9 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
             Favorite.strAwayTeam to TEXT,
             Favorite.dateEvent to TEXT,
             Favorite.intHomeScore to TEXT,
-            Favorite.intAwayScore to TEXT)
+            Favorite.intAwayScore to TEXT,
+            Favorite.TEAM_PARAMETER_ID to TEXT
+            )
 
         db?.createTable(
             Teams.TABLE_TEAMS,true,

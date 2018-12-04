@@ -2,7 +2,10 @@ package com.example.sangs.finalprojectkade.matches.menu.menudetail
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.Menu
+import android.view.MenuItem
+import com.example.sangs.finalprojectkade.Model.db.database
 import com.example.sangs.finalprojectkade.Model.model.ResponseModel
 import com.example.sangs.finalprojectkade.R
 import com.squareup.picasso.Picasso
@@ -44,7 +47,7 @@ class DetailActivityMatches : AppCompatActivity(),DetailActivitysView{
     }
 
     override fun getMatchesSize(boolean: Boolean) {
-
+        isFavorite = boolean
     }
 
     private var menuItem: Menu? = null
@@ -65,10 +68,52 @@ class DetailActivityMatches : AppCompatActivity(),DetailActivitysView{
         id_item = intent.getStringExtra("id")
         paramsIndex = intent.getStringExtra("param")
 
-        detailPresenter = DetailActivitysPresenter(this)
-//        detailPresenter.getFavoriteSize(id_item)
+        detailPresenter = DetailActivitysPresenter(this,this.database)
+        detailPresenter.getFavoriteSize(id_item)
 
         detailPresenter.showDetailDataItems(id_item,paramsIndex)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        setFavorite()
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+
+            R.id.add_to_favorite -> {
+                if (isFavorite) {
+                    detailPresenter.removeFromFavorite(id_item)
+                }
+                else{
+                    detailPresenter.addToFavorite(
+                        id_item,
+                        detail_name_away_team.text.toString(),
+                        detail_name_home_team.text.toString(),
+                        detail_date_event.text.toString(),
+                        homeScore,
+                        awayScore,
+                        paramsIndex
+                    )
+                }
+
+                isFavorite = !isFavorite
+                setFavorite()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_black_24dp)
+    }
+
 
 }

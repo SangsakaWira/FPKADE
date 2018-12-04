@@ -8,7 +8,8 @@ data class Favorite(
                     val strAwayTeam: String?,
                     val dateEvent: String?,
                     val intHomeScore: String?,
-                    val intAwayScore: String?
+                    val intAwayScore: String?,
+                    val TEAM_PARAMETER_ID: String?
                     ){
     companion object {
 
@@ -20,6 +21,7 @@ data class Favorite(
         const val dateEvent: String = "dateEvent"
         const val intHomeScore: String = "intHomeScore"
         const val intAwayScore: String = "intAwayScore"
+        const val TEAM_PARAMETER_ID: String = "TEAM_PARAMETER_ID"
     }
 
 

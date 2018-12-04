@@ -12,13 +12,11 @@ import android.view.ViewGroup
 import com.example.sangs.finalprojectkade.R
 import org.jetbrains.anko.find
 
-
 class FavoriteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view:View = inflater.inflate(R.layout.fragment_favorite, container, false)
-
 
         val tabs_main: TabLayout = view.find(R.id.tabs_main)
         val pager: ViewPager = view.find(R.id.viewpager_main)
@@ -29,9 +27,7 @@ class FavoriteFragment : Fragment() {
         )
         tabs_main.setupWithViewPager(pager)
 
-
         return view
     }
-
 
 }

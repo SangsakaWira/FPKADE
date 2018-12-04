@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.example.sangs.finalprojectkade.R
-import com.example.sangs.finalprojectkade.favorite.menu.FavoriteMatchesFragment
-import com.example.sangs.finalprojectkade.favorite.menu.FavoriteTeamsFragment
+import com.example.sangs.finalprojectkade.favorite.menu.match.FavoriteMatchesFragment
+import com.example.sangs.finalprojectkade.favorite.menu.team.FavoriteTeamsFragment
 
 class FavoriteTabs (fm: FragmentManager?, context: Context?): FragmentStatePagerAdapter(fm) {
 
