@@ -6,10 +6,13 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.sangs.finalprojectkade.Model.db.database
 import com.example.sangs.finalprojectkade.Model.model.ResponseModel
 import com.example.sangs.finalprojectkade.R
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_detail.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.imageResource
 
 class DetailActivity : AppCompatActivity(),DetailItemViews{
 
@@ -44,7 +47,7 @@ class DetailActivity : AppCompatActivity(),DetailItemViews{
 
         dataItems = arrayListOf()
 
-        detailTeamsPresenter = DetailItemPresenter(this)
+        detailTeamsPresenter = DetailItemPresenter(this,this.database)
         detailTeamsPresenter.getInformationTeams(idTeams)
 
         val tabs_main: TabLayout = find(R.id.tabs_main)
@@ -52,24 +55,32 @@ class DetailActivity : AppCompatActivity(),DetailItemViews{
 
         pager.adapter = DetailTeamsAdapter(supportFragmentManager,applicationContext,idTeams)
         tabs_main.setupWithViewPager(pager)
-//
-//        detailTeamsPresenter.getFavoriteSize(idTeams)
-//
-//        fab.setOnClickListener {
-//            if (isFavorite) {
-//                detailTeamsPresenter.removeFromFavorite(idTeams)
-//                isFavorite = false
-//            }
-//            else{
-//                detailTeamsPresenter.addToFavorite(
-//                    idTeam = idTeams,
-//                    teamLogo = dataItems[0].strTeamBadge,
-//                    teamName = dataItems[0].strTeam
-//                )
-//                isFavorite = true
-//            }
-//            setFavorite()
-//        }
-//        setFavorite()
+
+        detailTeamsPresenter.getFavoriteSize(idTeams)
+
+        fab.setOnClickListener {
+            if (isFavorite) {
+                detailTeamsPresenter.removeFromFavorite(idTeams)
+                isFavorite = false
+            }
+            else{
+                detailTeamsPresenter.addToFavorite(
+                    idTeam = idTeams,
+                    teamLogo = dataItems!![0]!!.strTeamBadge,
+                    teamName = dataItems!![0]!!.strTeam
+                )
+                isFavorite = true
+            }
+            setFavorite()
+        }
+        setFavorite()
     }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            fab.imageResource = R.drawable.ic_favorite_black_24dp
+        else
+            fab.imageResource = R.drawable.ic_favorite_border_black_24dp
+    }
+
 }

@@ -11,4 +11,6 @@
     <item name="item_away_score" type="id"/>
     <item name="item_tgl" type="id"/>
     <item name="item_linear" type="id"/>
+    <item name="teams_title" type="id"/>
+    <item name="teams_logo" type="id"/>
 </resources>
