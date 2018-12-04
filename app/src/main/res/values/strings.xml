@@ -13,4 +13,6 @@
     <string name="content_match_vs">VS</string>
     <string name="tab_overview">OVERVIEW</string>
     <string name="tab_players">PLAYERS</string>
+    <string name="players_detail_weight">WEIGHT</string>
+    <string name="players_detail_height">HEIGHT</string>
 </resources>

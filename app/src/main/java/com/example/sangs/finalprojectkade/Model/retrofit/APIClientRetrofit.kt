@@ -27,4 +27,7 @@ interface APIClientRetrofit {
     @GET("lookup_all_players.php")
     fun getAllPlayers(@Query("id")id:String):Call<ResponseValue>
 
+    @GET("lookupplayer.php")
+    fun getPlayers(@Query("id")id:String):Call<ResponseValue>
+
 }

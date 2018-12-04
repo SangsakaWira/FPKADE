@@ -13,6 +13,9 @@ class ResponseValue {
     @field:SerializedName("player")
     val player: List<ResponseModel?>? = null
 
+    @field:SerializedName("players")
+    val players: List<ResponseModel?>? = null
+
     @field:SerializedName("events")
     val events: List<ResponseModel?>? = null
 
