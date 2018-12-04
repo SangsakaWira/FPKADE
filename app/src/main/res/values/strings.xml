@@ -23,4 +23,6 @@
     <string name="detail_midfield">Midfiels</string>
     <string name="detail_forward">Forward</string>
     <string name="detail_subtitutes">Subtitues</string>
+    <string name="favourite_matches">MATCHES</string>
+    <string name="favourite_teams">TEAMS</string>
 </resources>
